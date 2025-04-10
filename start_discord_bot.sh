@@ -1,12 +1,11 @@
 #!/bin/bash
 
-echo "Starting the Discord bot..."
+echo "Starting the Discord bot deployment..."
 
-echo "Updating Maven dependencies..."
-mvn clean install
+brew services start redis
 
-echo "Starting the bot using Maven..."
-mvn exec:java -Dexec.mainClass="edu.moravian.dbot.WordScrambleBot"
+mvn clean package
 
-echo "The bot is now running. Press CTRL+C to stop it."
+java -jar target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar
+
 
