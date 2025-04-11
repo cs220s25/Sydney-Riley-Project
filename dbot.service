@@ -1,7 +1,7 @@
 [Unit]
 Description=Discord Bot App
 After=network.target
-Wants=network,target
+Wants=network.target
 
 [Service]
 ExecStart=/usr/bin/java -jar /home/user/dbot/target/dbot-1.0.0.jar
