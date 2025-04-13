@@ -4,8 +4,16 @@ After=network.target
 Wants=network.target
 
 [Service]
-ExecStart=/usr/bin/java -jar /home/user/dbot/target/dbot-1.0.0.jar
-WorkingDirectory=/home/user/dbot
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/Sydney-Riley-Project
+ExecStart=/usr/bin/java -jar 
+/home/ec2-user/Sydney-Riley-Project/target/dbot-1.0-SNAPSHOT-jar-with-de>
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
+
+
+
