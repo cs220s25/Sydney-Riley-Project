@@ -1,4 +1,5 @@
-![Run Maven Tests](https://github.com/riley1021/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)
+[![CI](https://github.com/riley1021/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)](https://github.com/riley1021/Sydney-Riley-Project/actions/workflows/run_tests.yml)
+
 
 
 ## Project Overview
