@@ -71,6 +71,14 @@ Provided below are the valid commands users can enter into the Discord Chat to i
     * Paste the URL into a new browser tab.
     * When the page loads, under "Add to Server" select the desired server for app.
     * Authorize the bot, and then close this tab.
+
+  5. Create a Channel
+     * Click the server that you authorized the bot in.
+     * Click the plus sign next to "Text Channels".
+     * Under the "Channel Type" section, select "Text".
+     * Make the channel name `discord-bot` and then click "Create Channel".
+    
+	     **NOTE**: If you want to change the channel name to something other than `discord-bot`, then replace the string in `if (!event.getChannel().getName().equals("discord-bot"))` with your desired name.
   
 ### Secrets Manager
 1. Create a Secret for Discord Token
