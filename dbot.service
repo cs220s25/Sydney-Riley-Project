@@ -7,8 +7,7 @@ Wants=network.target
 User=ec2-user
 Group=ec2-user
 WorkingDirectory=/home/ec2-user/Sydney-Riley-Project
-ExecStart=/usr/bin/java -jar 
-/home/ec2-user/Sydney-Riley-Project/target/dbot-1.0-SNAPSHOT-jar-with-de>
+ExecStart=/usr/bin/java -jar /home/ec2-user/Sydney-Riley-Project/target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar
 Restart=on-failure
 RestartSec=5
 
