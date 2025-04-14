@@ -47,7 +47,7 @@ Provided below are the valid commands users can enter into the Discord Chat to i
   ```
   brew install redis
   ```
-
+  
 ### Discord
 1. Create an Account (https://discord.com)
 
@@ -72,3 +72,54 @@ Provided below are the valid commands users can enter into the Discord Chat to i
     * When the page loads, under "Add to Server" select the desired server for app.
     * Authorize the bot, and then close this tab.
   
+### Secrets Manager
+1. Create a Secret for Discord Token
+    * Open the AWS Console, and go to [Secrets Manager](https://aws.amazon.com/secrets-manager/).
+    * Click "Store a new Secret".
+    * Under the "Secret Type" section, select "Other type of secret".
+    * Under the "Key/value pairs" section, Key: `DISCORD_TOKEN`, Value: `<your discord token>`.
+    * Click "Next" to go to the Configure secret page, Secret Name: `220_Discord_Token`.
+    * Click "Next" through all remaining pages, then click "Store".
+
+## Deployment Instructions
+### Run Locally
+* Create a folder for your AWS Credentials.
+  ```
+  mkdir ~/.aws
+  ```
+* Create credentials file in AWS.
+  ```
+  cd ~/.aws
+  ```
+  ```
+  nano credentials
+  ```
+* Copy and paste the "AWS CLI" information into the credentials file.
+  * Learner Lab - Click on "AWS Details" at the top of lab interface, then click "Show" under "AWS CLI" to find information.
+  
+    ```
+    [default]
+    aws_access_key_id=<insert access key id>
+    aws_secret_access_key=<insert secret access key>
+    aws_session_token=<insert session token>
+    ```
+
+   * Full AWS Account - Log into [AWS Management Console](https://aws.amazon.com) and navigate to IAM. Go to the "Users" section and select the specific IAM user you want. Generate or find the AWS Access Key ID and Secret Access Key.
+
+      ```
+      [default]
+      aws_access_key_id=<insert access key id>
+      aws_secret_access_key=<insert secret access key>
+      ```
+        **NOTE**: If you are using the Learner Lab, then your credentials will change every time the lab is launched. If you are using a full AWS account, then your credentials are permanent and `~/.aws/credentials` won't need to be edited again.
+     
+* Run script to deploy project.
+	```
+	cd /Sydney-Riley-Project
+	```
+	```
+	chmod +x deployLocal.sh
+	```
+	```
+	./deployLocal.sh
+  ```
