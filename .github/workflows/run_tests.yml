@@ -19,12 +19,22 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - name: Install Dependencies
+
+    - name: Install & Start Redis
       run: |
         sudo apt-get update
         sudo apt-get install -y redis-server
-        sudo systemctl start redis
-        sudo systemctl status redis
+        redis-server --daemonize yes
+        for i in {1..5}; do
+          redis-cli ping && break
+          echo "Waiting for Redis..."
+          sleep 2
+        done
 
     - name: Run Maven Tests
       run: mvn test
+
+    - name: Print Failing Tests (if any)
+      if: failure()
+      run: cat target/surefire-reports/*.txt || true
+
