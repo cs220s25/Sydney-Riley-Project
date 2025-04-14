@@ -82,7 +82,7 @@ public class WordScrambleBot {
                 if (event.getAuthor().isBot())
                     return;
 
-                if (!event.getChannel().getName().equals("<insert channel name here>"))
+                if (!event.getChannel().getName().equals("discord-bot"))
                     return;
 
                 String username = event.getAuthor().getName();
