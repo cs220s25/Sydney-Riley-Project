@@ -1,7 +1,6 @@
 package edu.moravian;
 
 import edu.moravian.exceptions.*;
-import io.github.cdimascio.dotenv.*;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.channel.middleman.*;
 import net.dv8tion.jda.api.events.message.*;
@@ -60,10 +59,15 @@ public class WordScrambleBot {
 
     private static String loadToken() {
         try {
-            Dotenv dotenv = Dotenv.load();
-            return dotenv.get("DISCORD_TOKEN");
-        } catch (DotenvException e) {
-            System.err.println("Failed to load .env file\n\nIs it present?");
+            String secretName = "220_Discord_Token";
+            String secretKey = "DISCORD_TOKEN";
+
+            Secrets secrets = new Secrets();
+
+            String secret = secrets.getSecret(secretName, secretKey);
+            return secret;
+        } catch (SecretsException e) {
+            System.out.println(e.getMessage());
             System.exit(1);
             return null;
         }
@@ -78,7 +82,7 @@ public class WordScrambleBot {
                 if (event.getAuthor().isBot())
                     return;
 
-                if (!event.getChannel().getName().equals("word_scramble_game"))
+                if (!event.getChannel().getName().equals("<insert channel name here>"))
                     return;
 
                 String username = event.getAuthor().getName();
