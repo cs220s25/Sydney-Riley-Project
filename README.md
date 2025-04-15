@@ -96,7 +96,6 @@ Provided below are the valid commands users can enter into the Discord Chat to i
     * Click "Next" through all remaining pages, then click "Store".
 
 ## Deployment Instructions
-### Run Locally
 * Create a folder for your AWS Credentials.
   ```
   mkdir ~/.aws
@@ -127,13 +126,52 @@ Provided below are the valid commands users can enter into the Discord Chat to i
       ```
         **NOTE**: If you are using the Learner Lab, then your credentials will change every time the lab is launched. If you are using a full AWS account, then your credentials are permanent and `~/.aws/credentials` won't need to be edited again.
      
-* Run script to deploy project.
-	```
-	cd /Sydney-Riley-Project
-	```
-	```
-	chmod +x deployLocal.sh
-	```
-	```
-	./deployLocal.sh
+### Run Locally
+* Clone the repository.
   ```
+  git clone https://github.com/cs220s25/Sydney-Riley-Project.git
+  ```
+  ```
+  cd Sydney-Riley-Project/
+  ```
+* Run script to deploy project.
+  ```
+  chmod +x deployLocal.sh
+  ```
+  ```
+  ./deployLocal.sh
+  ```
+
+### Run on AWS
+1. Create a new EC2 Instance.
+   * Log into AWS Management Console and navigate to EC2.
+   * On the left, click on "Instances" and then click on "Launch instances".
+   * Name the instance anything you want (eg. DBot EC2 Instance)
+   * Keep all the settings default except:
+   	* Under section "Key pair", select "vockey".
+   	* Under section "Firewall" make sure "Allow SSH traffic from" is checked off.
+   	* Under "Advanced Details" section, select "LabInstanceProfile" under "IAM instance profile".
+   	* Upload or copy and paste information from `userData.sh` into "User data" section.
+   * Click "Launch instance" and reload "Instances" page to show newly created instance is running.
+
+2. Connect to EC2 Instance.
+   * SSH to EC2 Instance.
+     ```
+     ssh -i /path/to/private_key.pem username@<public_ip_address>
+     ```
+     **Note**: You may have to wait a few seconds until files are loaded and are properly running. After a few seconds, the Bot you created should show active under the "Show Member List" of your designated server. You can use `sudo systemctl status redis6` and `sudo systemctl status dbot.service` in terminal to double-check that everything is actively runnning.
+     
+
+4. Redeploy EC2 Instance.
+   * Change directory to cloned repository.
+     ```
+     cd Sydney-Riley-Project/
+     ```
+   * Run script to redeploy project.
+     ```
+     chmod +x redeploy.sh
+     ```
+     ```
+     ./redeploy.sh
+     ```
+     
