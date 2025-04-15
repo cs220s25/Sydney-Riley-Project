@@ -1,4 +1,4 @@
-[![CI](https://github.com/Sydney-Shifman/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)](https://github.com/Sydney-Shifman/Sydney-Riley-Project/actions/workflows/run_tests.yml)
+[![CI](https://github.com/Sydney-Shifman/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/run_tests.yml)
 
 
 
