@@ -16,10 +16,13 @@ yum install -y maven-amazon-corretto21
 yum install git -y
 
 # Clone the repository
-git clone https://github.com/cs220s25/Sydney-Riley-Project /home/ec2-user/Sydney-Riley-Project
+git clone https://github.com/cs220s25/Sydney-Riley-Project /Sydney-Riley-Project
 
 # Change to the project directory
-cd /home/ec2-user/Sydney-Riley-Project
+cd /Sydney-Riley-Project
+
+# Add execution permission for redeploy
+chmod +x redploy.sh
 
 # Clean and package project
 mvn clean package
