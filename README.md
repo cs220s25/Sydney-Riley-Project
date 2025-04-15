@@ -59,7 +59,9 @@ Provided below are the valid commands users can enter into the Discord Chat to i
 
 2. Create an App (https://discord.com/developers/applications)
     * Create a "New Application".
+    * Set the name of the App anything you want (e.g. WordScrambleBot).
     * Click on the "Bot" section in the menu on the left.
+    * Set the username to be the desired name you want shown on Discord.
     * Find the section named "Privileged Gateway Intents".
     * Click the toggle button next to "Message Content Intent".
     * Click "Save Changes" that appears at the bottom of the webpage.
@@ -78,13 +80,11 @@ Provided below are the valid commands users can enter into the Discord Chat to i
     * When the page loads, under "Add to Server" select the desired server for app.
     * Authorize the bot, and then close this tab.
 
-  5. Create a Channel
-     * Click the server that you authorized the bot in.
-     * Click the plus sign next to "Text Channels".
-     * Under the "Channel Type" section, select "Text".
-     * Make the channel name `discord-bot` and then click "Create Channel".
-    
-	     **NOTE**: If you want to change the channel name to something other than `discord-bot`, then replace the string in `if (!event.getChannel().getName().equals("discord-bot"))` with your desired name.
+5. Create a Channel
+   * Click the server that you authorized the bot in.
+   * Click the plus sign next to "Text Channels".
+   * Under the "Channel Type" section, select "Text".
+   * Make the channel name `discord-bot` and then click "Create Channel".
   
 ### Secrets Manager
 1. Create a Secret for Discord Token
@@ -107,7 +107,7 @@ Provided below are the valid commands users can enter into the Discord Chat to i
   ```
   nano credentials
   ```
-* Copy and paste the "AWS CLI" information into the credentials file.
+* Copy and paste the "AWS CLI" information into the credentials file and save changes.
   * Learner Lab - Click on "AWS Details" at the top of lab interface, then click "Show" under "AWS CLI" to find information.
   
     ```
@@ -141,16 +141,27 @@ Provided below are the valid commands users can enter into the Discord Chat to i
   ```
   ./deployLocal.sh
   ```
+* Stop the Bot from running, `ctrl + c`.
+
+  **NOTE**: If you want to change the channel name to something other than `discord-bot`, then replace the string in `if (!event.getChannel().getName().equals("discord-bot"))` with your desired channel name. Make sure the channel is created in the designated server the Bot is in.
+  * Change directory to repository.
+    ```
+    cd Sydney-Riley-Project/
+    ```
+  * Change "discord-bot" to desired channel name.
+    ```
+    nano src/main/java/edu/moravian/WordScrambleBot.java
+    ```
 
 ### Run on AWS
 1. Create a new EC2 Instance.
    * Log into AWS Management Console and navigate to EC2.
    * On the left, click on "Instances" and then click on "Launch instances".
-   * Name the instance anything you want (eg. DBot EC2 Instance)
+   * Name the instance anything you want (e.g. DBot EC2 Instance).
    * Keep all the settings default except:
-   	* Under section "Key pair", select "vockey".
-   	* Under section "Firewall" make sure "Allow SSH traffic from" is checked off.
-   	* Under "Advanced Details" section, select "LabInstanceProfile" under "IAM instance profile".
+   	* Under section "Key pair", select `vockey`.
+   	* Under section "Firewall" make sure `Allow SSH traffic from` is checked off.
+   	* Under "Advanced Details" section, select `LabInstanceProfile` under "IAM instance profile".
    	* Upload or copy and paste information from `userData.sh` into "User data" section.
    * Click "Launch instance" and reload "Instances" page to show newly created instance is running.
 
@@ -159,19 +170,22 @@ Provided below are the valid commands users can enter into the Discord Chat to i
      ```
      ssh -i /path/to/private_key.pem username@<public_ip_address>
      ```
-     **Note**: You may have to wait a few seconds until files are loaded and are properly running. After a few seconds, the Bot you created should show active under the "Show Member List" of your designated server. You can use `sudo systemctl status redis6` and `sudo systemctl status dbot.service` in terminal to double-check that everything is actively runnning.
+     **Note**: You may have to wait about a minute until files are loaded and are properly running. Afterwards, the Bot you created should show active under the "Show Member List" of your designated server. You can use `sudo systemctl status redis6` and `sudo systemctl status dbot.service` in terminal to double-check that everything is actively runnning.
      
 
 4. Redeploy EC2 Instance.
    * Change directory to cloned repository.
      ```
-     cd Sydney-Riley-Project/
+     cd /Sydney-Riley-Project/
      ```
    * Run script to redeploy project.
      ```
-     chmod +x redeploy.sh
-     ```
-     ```
      ./redeploy.sh
      ```
+     **Note**: You will see that the Bot you created should become inactive and then in a few seconds will become active under the "Show Member List" of your designated server.
+
+5. Stop the Bot from running.
+   * Navigate to EC2 on AWS Management Console.
+   * On the left, click on "Instances" and then select the EC2 Instance you launched for Bot.
+   * On the top next to "Connect", click "Instance state" then "Stop instance".
      
