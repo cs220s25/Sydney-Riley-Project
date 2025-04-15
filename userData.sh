@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "Starting the Discord bot deployment..."
-
 # Install Redis
 yum install redis6 -y
 
@@ -40,5 +38,3 @@ systemctl enable dbot.service
 
 # Start the service
 systemctl start dbot.service
-
-echo "Deployment is done! The Discord bot should be running now."
