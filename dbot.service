@@ -7,7 +7,8 @@ Wants=network.target
 User=ec2-user
 Group=ec2-user
 WorkingDirectory=/home/ec2-user/Sydney-Riley-Project
-ExecStart=/bin/bash -c '/usr/bin/mvn exec:java -Dexec.mainClass="edu.moravian.LoadData" && /usr/bin/java -jar /home/ec2-user/Sydney-Riley-Project/target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar'
+ExecStartPre=/usr/bin/mvn exec:java -Dexec.mainClass="edu.moravian.LoadData"
+ExecStart=/usr/bin/java -jar /home/ec2-user/Sydney-Riley-Project/target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar
 Restart=on-failure
 RestartSec=5
 
