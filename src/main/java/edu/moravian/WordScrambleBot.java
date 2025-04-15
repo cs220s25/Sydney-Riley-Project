@@ -15,6 +15,7 @@ public class WordScrambleBot {
      * Sets up the environment necessary for the Discord Bot to run and play Word Scramble Game.
      */
     public static void main(String[] args) {
+        LoadData.main(args);
         Redis storage = createStorage();
         Lexicon lexicon = createLexicon();
         WordScrambleGame game = new WordScrambleGame(storage, new Scrambler(), lexicon);
