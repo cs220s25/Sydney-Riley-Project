@@ -1,5 +1,5 @@
 [![CI](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/run_tests.yml)
-
+[![CD](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployOnAws.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployOnAws.yml)
 
 
 
