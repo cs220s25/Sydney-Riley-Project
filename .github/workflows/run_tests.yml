@@ -40,15 +40,3 @@ jobs:
 
     - name: Build Project
       run: mvn package
-
-    - name: Deploy to Remote Server
-      if: success()
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.LABSUSER_KEY }}
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-      run: |
-        echo "$SSH_PRIVATE_KEY" > labsuser.pem
-        chmod 600 labsuser.pem
-        scp -i labsuser.pem target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar $REMOTE_USER@$REMOTE_HOST:/app/dbot.jar
-        ssh -i labsuser.pem $REMOTE_USER@$REMOTE_HOST 'systemctl restart dbot'
