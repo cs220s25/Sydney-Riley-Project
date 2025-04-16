@@ -38,3 +38,12 @@ jobs:
       if: failure()
       run: cat target/surefire-reports/*.txt || true
 
+    - name: Build Project
+      run: mvn package
+
+    - name: Deploy to Server
+      if: success()  # only deploy if tests pass
+      run: |
+        scp target/myapp.jar user@your-server:/app/
+        ssh user@your-server 'systemctl restart myapp'
+
