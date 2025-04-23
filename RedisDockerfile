@@ -1,0 +1,8 @@
+# Use the official Redis image
+FROM redis:6
+
+# Expose Redis default port
+EXPOSE 6379
+
+# Run Redis server
+CMD ["redis-server"]
