@@ -37,7 +37,9 @@ public class WordScrambleBot {
     private static Redis createStorage() {
         Redis storage = null;
         try {
-            storage = new Redis("localhost", 6379);
+            String host = System.getenv("REDIS_HOST");
+            int port = Integer.parseInt(System.getenv("REDIS_PORT"));
+            storage = new Redis(host, port);
         } catch (Exception e) {
             System.err.println("Failed to connect to Redis\n\nIs it running?");
             System.exit(1);
@@ -48,7 +50,9 @@ public class WordScrambleBot {
     private static Lexicon createLexicon() {
         Lexicon lexicon = null;
         try {
-            Jedis jedis = new Jedis("localhost", 6379);
+            String host = System.getenv("REDIS_HOST");
+            int port = Integer.parseInt(System.getenv("REDIS_PORT"));
+            Jedis jedis = new Jedis(host, port);
             lexicon = new RedisLexicon(jedis);
             jedis.ping();
         } catch (JedisException e) {
@@ -64,9 +68,7 @@ public class WordScrambleBot {
             String secretKey = "DISCORD_TOKEN";
 
             Secrets secrets = new Secrets();
-
-            String secret = secrets.getSecret(secretName, secretKey);
-            return secret;
+            return secrets.getSecret(secretName, secretKey);
         } catch (SecretsException e) {
             System.out.println(e.getMessage());
             System.exit(1);
@@ -75,7 +77,9 @@ public class WordScrambleBot {
     }
 
     private static void startBot(BotResponder responder, String token) {
-        JDA api = JDABuilder.createDefault(token).enableIntents(GatewayIntent.MESSAGE_CONTENT).build();
+        JDA api = JDABuilder.createDefault(token)
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
+                .build();
 
         api.addEventListener(new ListenerAdapter() {
             @Override
