@@ -188,4 +188,26 @@ Provided below are the valid commands users can enter into the Discord Chat to i
    * Navigate to EC2 on AWS Management Console.
    * On the left, click on "Instances" and then select the EC2 Instance you launched for Bot.
    * On the top next to "Connect", click "Instance state" then "Stop instance".
-     
+
+ ### Run on Docker
+* Clone the repository.
+  ```
+  git clone https://github.com/cs220s25/Sydney-Riley-Project.git
+  ```
+  ```
+  cd Sydney-Riley-Project/
+  ```
+* Build the docker image.
+  ```
+  docker build -t sydney-riley .
+  ```
+* Run the docker image.
+  ```
+  docker run -d --name sydney-riley-container -p 8080:8080 sydney-riley
+  ```
+* Run the docker container.
+  ```
+  docker-compose up
+  ```
+* Stop the Bot from running, `ctrl + c`.
+  
