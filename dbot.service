@@ -4,6 +4,8 @@ After=network.target
 Wants=network.target
 
 [Service]
+Environment=REDIS_HOST=localhost
+Environment=REDIS_PORT=6379
 WorkingDirectory=/Sydney-Riley-Project
 ExecStart=java -jar target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar
 Restart=on-failure
