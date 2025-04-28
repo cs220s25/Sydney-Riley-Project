@@ -15,4 +15,4 @@ jobs:
           key: ${{ secrets.LABSUSERPEM }}
           script: |
             cd /Sydney-Riley-Project
-            ./redeploy.sh
+            ./redeployAWS.sh
