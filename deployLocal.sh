@@ -2,6 +2,10 @@
 
 echo "Starting the Discord bot deployment..."
 
+# Set the environment variables
+export REDIS_HOST=localhost
+export REDIS_PORT=6379
+
 # Start the Redis service
 brew services start redis
 
