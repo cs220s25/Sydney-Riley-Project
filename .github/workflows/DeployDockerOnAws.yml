@@ -22,8 +22,3 @@ jobs:
           script: |
             cd /Sydney-Riley-Project
             ./redeployDocker.sh
-            
-            
-            
-            
-            
