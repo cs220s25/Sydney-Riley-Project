@@ -20,6 +20,8 @@ jobs:
           user: ec2-user
           key: ${{ secrets.LABSUSERPEM }}
           script: |
-            sudo chmod +x /Sydney-Riley-Project/redeployAWS.sh
+            set -x
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.LABSUSERPEM }} ec2-user@${{ secrets.PUBLICIP }} "echo 'SSH Success!'"
+            ls -l /Sydney-Riley-Project/redeployAWS.sh
             cd /Sydney-Riley-Project
             ./redeployAWS.sh
