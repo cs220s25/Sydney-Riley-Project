@@ -14,13 +14,13 @@ mkdir -p /usr/local/lib/docker/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v2.35.1/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
 chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
-# Add ec2-user to the docker group so you can run docker without sudo
+# Add ec2-user to the docker group to run docker without sudo
 usermod -aG docker ec2-user
 
-# Install Git to clone your project
+# Install Git
 yum install -y git
 
-# Clone your GitHub project (Sydney-Riley-Project)
+# Clone the repository
 git clone https://github.com/cs220s25/Sydney-Riley-Project.git
 
 # Change directory into the project
