@@ -27,7 +27,7 @@ git clone https://github.com/cs220s25/Sydney-Riley-Project.git
 cd /Sydney-Riley-Project
 
 # Make sure redeploy.sh is executable
-chmod +x /redeployDocker.sh
+chmod +x redeployDocker.sh
 
 # Run docker-compose to start your app (in detached mode)
 docker compose up -d
