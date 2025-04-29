@@ -14,7 +14,7 @@ public class BotResponder {
 
     public String respond(String username, String message, MessageChannel channel) {
         try {
-            if (message.equals("+categories"))
+            if (message.equals("-categories"))
                 return handleCategories();
             else if (message.startsWith("!start"))
                 return handleStart(message);
