@@ -1,6 +1,6 @@
 [![CI](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/run_tests.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/run_tests.yml)
 [![CD](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployOnAws.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployOnAws.yml)
-
+[![CD](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployDockerOnAws.yml/badge.svg)](https://github.com/cs220s25/Sydney-Riley-Project/actions/workflows/DeployDockerOnAws.yml)
 
 
 
@@ -23,6 +23,8 @@ Provided below are the valid commands users can enter into the Discord Chat to i
 ### System Diagram
 ![UMLDiagram](WordScrambleGameBot_UML.png)
 
+
+The project has three main components: the interface, game, and database. The WordScrambleBot, BotResponder, and BotResponses interact with the Discord interface used for the Bot. The GameManager, WordScrambleGame, Scrambler, GameMode, and GameState deal with the game logic for implementing a Word Scramble game. The GameStorage and Lexicon interact with Redis to hold the necessary information for the game and about the game.
 
 ## Setup Instructions
 ### Terminal
@@ -159,10 +161,10 @@ Provided below are the valid commands users can enter into the Discord Chat to i
    * On the left, click on "Instances" and then click on "Launch instances".
    * Name the instance anything you want (e.g. DBot EC2 Instance).
    * Keep all the settings default except:
-   	* Under section "Key pair", select `vockey`.
-   	* Under section "Firewall" make sure `Allow SSH traffic from` is checked off.
-   	* Under "Advanced Details" section, select `LabInstanceProfile` under "IAM instance profile".
-   	* Upload or copy and paste information from `userData.sh` into "User data" section.
+   * Under section "Key pair", select `vockey`.
+   * Under section "Firewall" make sure `Allow SSH traffic from` is checked off.
+   * Under "Advanced Details" section, select `LabInstanceProfile` under "IAM instance profile".
+   * Upload or copy and paste information from `userDataAWS.sh` into "User data" section.
    * Click "Launch instance" and reload "Instances" page to show newly created instance is running.
 
 2. Connect to EC2 Instance.
@@ -180,7 +182,7 @@ Provided below are the valid commands users can enter into the Discord Chat to i
      ```
    * Run script to redeploy project.
      ```
-     ./redeploy.sh
+     ./redeployAWS.sh
      ```
      **Note**: You will see that the Bot you created should become inactive and then in a few seconds will become active under the "Show Member List" of your designated server.
 
@@ -190,6 +192,10 @@ Provided below are the valid commands users can enter into the Discord Chat to i
    * On the top next to "Connect", click "Instance state" then "Stop instance".
 
  ### Run on Docker
+* Open Docker Desktop, click application.
+  ```
+  open -a Docker
+  ```
 * Clone the repository.
   ```
   git clone https://github.com/cs220s25/Sydney-Riley-Project.git
@@ -199,15 +205,58 @@ Provided below are the valid commands users can enter into the Discord Chat to i
   ```
 * Build the docker image.
   ```
-  docker build -t sydney-riley .
+  docker build -t dbot .
   ```
 * Run the docker image.
   ```
-  docker run -d --name sydney-riley-container -p 8080:8080 sydney-riley
+  docker run -d --name dbot-container -p 8080:8080 dbot
   ```
 * Run the docker container.
   ```
   docker-compose up
   ```
 * Stop the Bot from running, `ctrl + c`.
+
+ ### Run on Docker on AWS
+ 1. Create a new EC2 Instance.
+     * Log into AWS Management Console and navigate to EC2.
+     * On the left, click on "Instances" and then click on "Launch instances".
+     * Name the instance anything you want (e.g. DBot EC2 Instance).
+     * Keep all the settings default except:
+     * Under section "Key pair", select `vockey`.
+     * Under section "Firewall" make sure `Allow SSH traffic from` is checked off.
+     * Under "Advanced Details" section, select `LabInstanceProfile` under "IAM instance profile".
+     * Upload or copy and paste information from `userDataDocker.sh` into "User data" section.
+     * Click "Launch instance" and reload "Instances" page to show newly created instance is running.
+
+2. Connect to EC2 Instance.
+   * SSH to EC2 Instance.
+     ```
+     ssh -i /path/to/private_key.pem username@<public_ip_address>
+     ```
+     **Note**: You may have to wait about a minute until files are loaded and are properly running. Afterwards, the Bot you created should show active under the "Show Member List" of your designated server. You can use `sudo docker ps` in terminal to double-check that everything is actively runnning.
+     
+
+4. Redeploy EC2 Instance.
+   * Change directory to cloned repository.
+     ```
+     cd /Sydney-Riley-Project/
+     ```
+   * Run script to redeploy project.
+     ```
+     ./redeployDocker.sh
+     ```
+     **Note**: You will see that the Bot you created should become inactive and then in a few seconds will become active under the "Show Member List" of your designated server.
+
+5. Stop the Bot from running.
+   * Navigate to EC2 on AWS Management Console.
+   * On the left, click on "Instances" and then select the EC2 Instance you launched for Bot.
+   * On the top next to "Connect", click "Instance state" then "Stop instance".
+
+
   
+## Technologies Used
+* 
+
+## Background Material Used
+* 
