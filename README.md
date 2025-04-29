@@ -192,6 +192,8 @@ The project has three main components: the interface, game, and database. The Wo
    * On the top next to "Connect", click "Instance state" then "Stop instance".
 
  ### Run on Docker
+* Install [Docker Desktop](https://www.docker.com/101-tutorial/)
+  
 * Open Docker Desktop, click application.
   ```
   open -a Docker
@@ -203,17 +205,12 @@ The project has three main components: the interface, game, and database. The Wo
   ```
   cd Sydney-Riley-Project/
   ```
-* Build the docker image.
+* Run script to deploy project.
   ```
-  docker build -t dbot .
+  chmod +x deployDocker.sh
   ```
-* Run the docker image.
   ```
-  docker run -d --name dbot-container -p 8080:8080 dbot
-  ```
-* Run the docker container.
-  ```
-  docker-compose up
+  ./deployDocker.sh
   ```
 * Stop the Bot from running, `ctrl + c`.
 
@@ -254,9 +251,24 @@ The project has three main components: the interface, game, and database. The Wo
    * On the top next to "Connect", click "Instance state" then "Stop instance".
 
 
-  
-## Technologies Used
-* 
 
-## Background Material Used
-* 
+## Technologies
+* **Java** - programming language used for the program.
+* **Maven** - dependency management tool.
+* **Redis** - database used to hold program information.
+* **Discord** - inferace used for user to interact with application.
+* **AWS Secrets Manager** - manages credentials for Discord Token.
+* **AWS EC2** - provides virtual servers in the cloud.
+* **Docker** - creates isolated virtual environments to containerize application.
+* **Docker Compose** - allows multiple containers to run at once.
+* **GitHub Actions** - used to promote CI/CD practices and ensure consistency.
+
+
+## Background Material
+* [Homebrew Package Manager](https://brew.sh)
+* [Maven Central Documentation](https://central.sonatype.com)
+* [AWS Secrets Manager Documentation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+* [AWS EC2 Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+* [Docker 101 Tutorial](https://www.docker.com/101-tutorial/)
+* [Docker Compose Documentation](https://docs.docker.com/compose/)
+* [GitHub Actions O'Reilly Textbook](https://www.oreilly.com/library/view/github-actions-in/9781633437302/)
