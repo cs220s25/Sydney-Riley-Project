@@ -13,18 +13,12 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.LABSUSERPEM }}" > ~/.ssh/labsuser.pem
-          chmod 400 ~/.ssh/labsuser.pem
-        
-      - name: SSH into EC2 and Redeploy
-        run: |
-            set -x
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/labsuser.pem ec2-user@${{ secrets.PUBLICIP }} << 'EOF'
-              echo "SSH Success!"
-              cd /Sydney-Riley-Project
-              ls -l redeployAWS.sh
-              ./redeployAWS.sh
-            EOF
+      - name: ssh-pipeline
+        uses: cross-the-world/ssh-pipeline@v1.2.0
+        with:
+          host: ${{ secrets.PUBLICIP }}
+          user: ec2-user
+          key: ${{ secrets.LABSUSERPEM }}
+          script: |
+            cd /Sydney-Riley-Project
+            ./redeployAWS.sh
