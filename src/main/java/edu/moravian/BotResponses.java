@@ -164,7 +164,7 @@ public class BotResponses
     public static String help()
     {
         return """
-                * `~categories` - get a list of categories.\s
+                * `!categories` - get a list of categories.\s
                 * `!start <category> <mode>` - start a new game with specified category and selected game mode.
                 * `!start random <mode>` - start a new game with a random category and selected game mode.
                 * `!modes` - shows the different game modes.\s
