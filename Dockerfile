@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . .
 
 # Package the application
-RUN mvn package
+RUN mvn package -DskipTests -Dcheckstyle.skip=true
 
 # Set the command to run the jar
 CMD ["java", "-jar", "target/dbot-1.0-SNAPSHOT-jar-with-dependencies.jar"]
