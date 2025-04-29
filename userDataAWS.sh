@@ -22,7 +22,7 @@ git clone https://github.com/cs220s25/Sydney-Riley-Project /Sydney-Riley-Project
 cd /Sydney-Riley-Project
 
 # Add execution permission for redeploy
-chmod +x redeploy.sh
+chmod +x redeployAWS.sh
 
 # Clean and package project
 mvn clean package
